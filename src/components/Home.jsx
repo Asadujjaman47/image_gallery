@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import imageData from "../image_data";
+import Gallery from "./Gallery/Gallery";
 
 const Home = () => {
   const [images, setImages] = useState(imageData);
@@ -19,9 +20,7 @@ const Home = () => {
   return (
     <div>
       <Header selectedImages={selectedImages} handleDelete={handleDelete} />
-      {images.map((img) => (
-        <img key={img.id} src={img.url} />
-      ))}
+      <Gallery images={images} />
     </div>
   );
 };
