@@ -1,10 +1,11 @@
 import "./App.css";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello ollyo!</h1>
-    </>
+    <div className="w-[1440px] h-fit mx-auto border rounded[10px] mt-3 shadow-sm">
+      <Home />
+    </div>
   );
 }
 
