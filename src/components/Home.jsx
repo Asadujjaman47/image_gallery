@@ -10,7 +10,7 @@ const Home = () => {
 
   const handleDelete = () => {
     const updatedImages = images.filter(
-      (img) => !selectedImages.includes(img.id)
+      (image) => !selectedImages.includes(image.id)
     );
     setImages(updatedImages);
     selectedImages([]);
@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <div>
       <Header selectedImages={selectedImages} handleDelete={handleDelete} />
-      <Gallery images={images} />
+      <Gallery images={images} selectedImages={selectedImages} />
     </div>
   );
 };
