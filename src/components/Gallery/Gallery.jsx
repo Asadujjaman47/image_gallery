@@ -22,6 +22,18 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
     setImages(updatedImages);
   };
 
+  const handleUploadImage = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const newImage = {
+        id: images.length + 1,
+        url: URL.createObjectURL(file),
+        isFeatured: true,
+      };
+      setImages([...images, newImage]);
+    }
+  };
+
   return (
     <div className="md:grid grid-cols-5 gap-4 md:mx-8">
       {images?.map((image, index) => (
@@ -40,7 +52,7 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
         </div>
       ))}
 
-      <AddImage />
+      <AddImage handleUploadImage={handleUploadImage} />
     </div>
   );
 };

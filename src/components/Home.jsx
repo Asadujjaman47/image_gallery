@@ -23,7 +23,7 @@ const Home = () => {
       (image) => !selectedImages.includes(image.id)
     );
     setImages(updatedImages);
-    selectedImages([]);
+    setSelectedImages([]);
     setIsDeleteButtonVisible(false);
   };
 
