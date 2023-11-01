@@ -1,3 +1,4 @@
+import AddImage from "./AddImage";
 import ImageItem from "./ImageItem";
 
 const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
@@ -38,6 +39,8 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
           />
         </div>
       ))}
+
+      <AddImage />
     </div>
   );
 };
