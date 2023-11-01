@@ -1,6 +1,6 @@
 import ImageItem from "./ImageItem";
 
-const Gallery = ({ images, selectedImages }) => {
+const Gallery = ({ images, selectedImages, handleImageSelect }) => {
   return (
     <div className="md:grid grid-cols-5 gap-4 md:mx-8">
       {images?.map((image, index) => (
@@ -13,6 +13,7 @@ const Gallery = ({ images, selectedImages }) => {
           <ImageItem
             image={image}
             isSelected={selectedImages.includes(image.id)}
+            onImageSelect={handleImageSelect}
           />
         </div>
       ))}

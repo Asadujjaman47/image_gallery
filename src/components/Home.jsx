@@ -8,6 +8,16 @@ const Home = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
 
+  const handleImageSelect = (image) => {
+    // console.log(image);
+
+    if (selectedImages.includes(image.id)) {
+      setSelectedImages(selectedImages.filter((id) => id !== image.id));
+    } else {
+      setSelectedImages([...selectedImages, image.id]);
+    }
+  };
+
   const handleDelete = () => {
     const updatedImages = images.filter(
       (image) => !selectedImages.includes(image.id)
@@ -20,7 +30,11 @@ const Home = () => {
   return (
     <div>
       <Header selectedImages={selectedImages} handleDelete={handleDelete} />
-      <Gallery images={images} selectedImages={selectedImages} />
+      <Gallery
+        images={images}
+        selectedImages={selectedImages}
+        handleImageSelect={handleImageSelect}
+      />
     </div>
   );
 };
