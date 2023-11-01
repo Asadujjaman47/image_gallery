@@ -1,11 +1,26 @@
 import React, { useState } from "react";
 
-const ImageItem = ({ image, isSelected, onImageSelect }) => {
+const ImageItem = ({ image, isSelected, onImageSelect, onReorder }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleCheckboxChange = () => {
     onImageSelect(image);
   };
+
+  const handleDragStart = (e) => {
+    e.dataTransfer.setData("text/plain", image.id);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const draggedImageId = e.dataTransfer.getData("text/plain");
+    onReorder(draggedImageId, image.id);
+  };
+
   return (
     <div
       className={`relative border-2 border-gray-300 group md:flex items-center justify-center ${
@@ -13,6 +28,10 @@ const ImageItem = ({ image, isSelected, onImageSelect }) => {
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      draggable="true"
+      onDragStart={handleDragStart}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
     >
       {(isHovered || isSelected) && (
         <input

@@ -34,6 +34,7 @@ const Home = () => {
         images={images}
         selectedImages={selectedImages}
         handleImageSelect={handleImageSelect}
+        setImages={setImages}
       />
     </div>
   );
