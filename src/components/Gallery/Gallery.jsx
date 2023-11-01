@@ -2,6 +2,7 @@ import AddImage from "./AddImage";
 import ImageItem from "./ImageItem";
 
 const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
+  // SWAP IMAGE AND UPDATE
   const handleImageReorder = (draggedImageId, targetImageId) => {
     const updatedImages = [...images];
 
@@ -22,6 +23,7 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
     setImages(updatedImages);
   };
 
+  // UPLOAD IMAGE
   const handleUploadImage = (event) => {
     const file = event.target.files[0];
     if (file) {

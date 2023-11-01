@@ -7,6 +7,7 @@ const ImageItem = ({ image, isSelected, onImageSelect, onReorder }) => {
     onImageSelect(image);
   };
 
+  // DRAG AND DROP
   const handleDragStart = (e) => {
     e.dataTransfer.setData("text/plain", image.id);
   };

@@ -8,6 +8,7 @@ const Home = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [isDeleteButtonVisible, setIsDeleteButtonVisible] = useState(false);
 
+  // IMAGE SELECT
   const handleImageSelect = (image) => {
     // console.log(image);
 
@@ -18,6 +19,7 @@ const Home = () => {
     }
   };
 
+  // IMAGE DELETE
   const handleDelete = () => {
     const updatedImages = images.filter(
       (image) => !selectedImages.includes(image.id)
