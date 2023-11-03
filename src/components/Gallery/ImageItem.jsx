@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ImageItem = ({ image, isSelected, onImageSelect, onReorder }) => {
+const ImageItem = ({ index, image, isSelected, onImageSelect, onReorder }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -24,8 +24,8 @@ const ImageItem = ({ image, isSelected, onImageSelect, onReorder }) => {
 
   return (
     <div
-      className={`relative border-2 border-gray-300 group md:flex items-center justify-center ${
-        isSelected ? "border-blue-500" : isHovered ? "filter brightness-75" : ""
+      className={`relative border-2 rounded-xl border-gray-300 group md:flex items-center justify-center overflow-hidden cursor-pointer ${
+        index === 0 ? "h-[25rem]" : "h-48"
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -35,19 +35,24 @@ const ImageItem = ({ image, isSelected, onImageSelect, onReorder }) => {
       onDrop={handleDrop}
     >
       {(isHovered || isSelected) && (
+        <div
+          className={`md:absolute inset-0 ${
+            isSelected ? "selected-overlay" : isHovered ? "hovered-overlay" : ""
+          }`}
+        />
+      )}
+      {(isHovered || isSelected) && (
         <input
-          className="md:absolute top-2 left-2 z-10 mt-8 ml-5 sm:w-5 sm:h-5"
+          className="md:absolute top-2 left-2 mt-2 ml-5 sm:w-5 sm:h-5 cursor-pointer"
           type="checkbox"
+          checked={isSelected}
           onChange={handleCheckboxChange}
         />
       )}
-
       <img
-        className={`object-cover w-full h-full ${
-          isSelected ? "filter brightness-75" : ""
-        }`}
+        className="object-cover-fit w-full h-full"
         src={image.url}
-        alt={image.id}
+        alt={`img ${image.id}`}
       />
     </div>
   );

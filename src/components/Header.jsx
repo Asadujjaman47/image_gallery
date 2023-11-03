@@ -31,5 +31,3 @@ const Header = ({ selectedImages, handleDelete }) => {
 };
 
 export default Header;
-
-// className = "md:absolute top-8 right-8 text-red-500 text-2xl ms-8";

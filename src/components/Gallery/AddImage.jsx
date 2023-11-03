@@ -1,9 +1,8 @@
-import React from "react";
 import { ImImage } from "react-icons/im";
 
 const AddImage = ({ handleUploadImage }) => {
   return (
-    <label className="md:flex flex-col items-center justify-center border-4">
+    <label className="md:flex flex-col items-center justify-center border-4 cursor-pointer">
       <input
         type="file"
         accept="image/*"
@@ -11,10 +10,10 @@ const AddImage = ({ handleUploadImage }) => {
         className="hidden"
       />
 
-      <span className="text-2xl">
-        <ImImage />
-      </span>
-      <h1 className="text-2xl p-4">Add Image</h1>
+      <div className="md:flex flex-col items-center">
+        <ImImage className="text-4xl" />
+        <span className="text-xl mt-2">Add Images</span>
+      </div>
     </label>
   );
 };

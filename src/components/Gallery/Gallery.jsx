@@ -1,6 +1,8 @@
 import AddImage from "./AddImage";
 import ImageItem from "./ImageItem";
 
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
   // SWAP IMAGE AND UPDATE
   const handleImageReorder = (draggedImageId, targetImageId) => {
@@ -11,16 +13,16 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
     );
 
     const targetIndex = updatedImages.findIndex(
-      (images) => images.id === +targetImageId
+      (image) => image.id === +targetImageId
     );
 
     if (draggedIndex !== -1 && targetIndex !== -1) {
       const [draggedImage] = updatedImages.splice(draggedIndex, 1);
 
       updatedImages.splice(targetIndex, 0, draggedImage);
-    }
 
-    setImages(updatedImages);
+      setImages(updatedImages);
+    }
   };
 
   // UPLOAD IMAGE
@@ -36,8 +38,11 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
     }
   };
 
+  //AUTO ANIMATED HOOK
+  const [parent, enableAnimations] = useAutoAnimate();
+
   return (
-    <div className="md:grid grid-cols-5 gap-4 md:mx-8">
+    <div className="md:grid grid-cols-5 gap-4 md:mx-8" ref={parent}>
       {images?.map((image, index) => (
         <div
           className={`${
@@ -46,6 +51,7 @@ const Gallery = ({ images, selectedImages, handleImageSelect, setImages }) => {
           key={image.id}
         >
           <ImageItem
+            index={index}
             image={image}
             isSelected={selectedImages.includes(image.id)}
             onImageSelect={handleImageSelect}
